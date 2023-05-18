@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block container %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Vehicle Number</label>
+      <input type="text" name ="number" value="{{ vehicle.vehicle_number }}" class="form-control" id="exampleFormControlInput1" placeholder="Vehicle number" required>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Vehicle Type</label>
+        <select name="type" value="{{ vehicle.vehicle_type }}" class="form-control" id="exampleFormControlSelect1" required>
+          
+            <option value="2 Wheeler" {% if vehicle.vehicle_type == "2 Wheeler" %}selected{% endif %}>2 Wheeler</option>
+            <option value="3 Wheeler" {% if vehicle.vehicle_type == "3 Wheeler" %}selected{% endif %}>3 Wheeler</option>
+            <option value="4 Wheeler" {% if vehicle.vehicle_type == "4 Wheeler" %}selected{% endif %}>4 Wheeler</option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1"> Vehicle Model</label>
+        <input type="text" name="model" value="{{ vehicle.vehicle_model }}" class="form-control" id="exampleFormControlInput1" placeholder="Vehicle Model" required>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Vehicle Description</label>
+        <textarea name="desc"  class="form-control" id="exampleFormControlTextarea1" rows="3" required>{{ vehicle.vehicle_desc }}</textarea>
+      </div>
+
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+      </div>
+
+
+</form>
+
+
+
+
+{% endblock  %}
