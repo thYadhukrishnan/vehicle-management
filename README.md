@@ -16,7 +16,7 @@ Usage
 1) Open the application in your web browser.
 2) Log in with your username and password.
 3) As an admin, you can perform the following operations:
-    - Create: Click on the "Create" button to add a new vehicle record.
+    - Create: Click on the "Add New Vehicle" button to add a new vehicle record.
     - Update: Click on the "Edit" button to modify the details of an existing vehicle record.
     - Delete: Click on the "Delete" button to remove a vehicle record from the system.
 
