@@ -4,18 +4,18 @@ from service.models import Service
 from django.shortcuts import render, redirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout
 
-def about(request):
-    return HttpResponse("About page")
 
-def course(request,id):
-    return HttpResponse(id)
 
 def home(request):
     # data={
     #     'title':'Home Page',
     #     'list':['java','php','python']
     # }
+    if not request.user.is_authenticated:
+        return redirect('login')
 
     vehicledata=Service.objects.all()
 
@@ -29,6 +29,8 @@ def login(request):
     return render(request,"login.html")
 
 def create(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
 
     if request.method == 'POST':
 
@@ -83,17 +85,22 @@ def update(request,id):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('name')
-        password = request.POST.get('password')
+        data=request.POST
+        username = data.get('name')
+        password = data.get('password')
 
         print(username)
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user)
-            return redirect('home')  # Redirect to the desired page after successful login
+            auth_login(request, user)
+            return redirect('home')  
         else:
-            # Handle invalid login credentials
+            
             error_message = 'Invalid username or password. Please try again.'
             return render(request, 'login.html', {'error_message': error_message})
 
     return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

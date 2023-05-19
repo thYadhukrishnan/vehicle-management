@@ -15,7 +15,8 @@
     <td>{{i.vehicle_type}}</td>
     <td>{{i.vehicle_model}}</td>
     <td>{{i.vehicle_desc}}</td>
-    <td><a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</a><a href="{% url 'update' i.id %}" class="btn btn-primary">Edit</a>
+    <td><a href="{% url 'delete' i.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+        <a href="{% url 'update' i.id %}" class="btn btn-primary">Edit</a></td>
     </tr>
     {% endfor %}
 
@@ -23,6 +24,8 @@
 
 {% comment %} <button type="button" class="btn btn-success">Add</button> {% endcomment %}
 <a href="{% url 'create' %}" class="btn btn-success">Add New Vehicle</a>
+
+<a href="{% url 'logout' %}" class="btn btn-outline-dark">Log Out</a>
 
 
 {% endblock  %}

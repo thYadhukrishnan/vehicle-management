@@ -20,10 +20,11 @@ from djangowebapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/',views.about),
-    path('course/<id>',views.course),
-    path('',views.home,name='home'),
-    path('login/',views.login),
+
+
+    path('home/',views.home,name='home'),
+    path('', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
     path('create/',views.create,name='create'),
     path('delete/<id>',views.delete,name='delete'),
     path('update/<id>',views.update,name='update')
